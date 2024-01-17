@@ -8,7 +8,6 @@ const SingInScreen = () => {
   return (
     <View style={styles.container}>
       <Button
-        style={styles.button}
         icon="camera"
         mode="contained"
         onPress={() => navigate(SCREENS.SignUp)}
@@ -26,6 +25,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  button: {},
 });
 export default SingInScreen;

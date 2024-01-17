@@ -9,12 +9,7 @@ import { navigationRef } from "shared/lib/navigationRef";
 export default function App() {
   return (
     <PaperProvider>
-      <NavigationContainer
-        onReady={() => {
-          console.log("ready");
-        }}
-        ref={navigationRef}
-      >
+      <NavigationContainer ref={navigationRef}>
         <MainStack />
         <StatusBar style="auto" />
       </NavigationContainer>
