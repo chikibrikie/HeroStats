@@ -13,16 +13,7 @@ const SingInScreen = () => {
         mode="contained"
         onPress={() => navigate(SCREENS.SignUp)}
       >
-        Sign Up
-      </Button>
-      <Text>SignIn</Text>
-      <Button
-        style={styles.button}
-        icon="camera"
-        mode="contained"
-        onPress={() => navigate(SCREENS.ForgotPassword)}
-      >
-        Forgot Password
+        Press me
       </Button>
       <Text>SignIn</Text>
     </View>
