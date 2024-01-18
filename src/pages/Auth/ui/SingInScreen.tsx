@@ -1,28 +1,34 @@
+import React from "react";
 import { View, StyleSheet } from "react-native";
+import { TextInput } from "react-native-paper";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
 import { Button, Text } from "shared/ui";
 
 const SingInScreen = () => {
+  const [textEmail, setTextEmail] = React.useState("");
+  const [textPassword, setTextPassword] = React.useState("");
   return (
     <View style={styles.container}>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => navigate(SCREENS.SignUp)}
-      >
-        Sign Up
+      <Text>HeroStats</Text>
+      <Text>Sign in</Text>
+      <Text>Not a member?</Text>
+      <Button onPress={() => navigate(SCREENS.SignUp)}>Join now</Button>
+      <TextInput
+        label="Email"
+        value={textEmail}
+        onChangeText={(text) => setTextEmail(text)}
+      />
+      <TextInput
+        label="Password"
+        value={textPassword}
+        onChangeText={(text) => setTextPassword(text)}
+      />
+      <Button mode="contained">Join now</Button>
+      <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
+        Forgot your password?
       </Button>
-      <Text>SignIn</Text>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => navigate(SCREENS.ForgotPassword)}
-      >
-        Forgot Password
-      </Button>
-      <Text>SignIn</Text>
     </View>
   );
 };
