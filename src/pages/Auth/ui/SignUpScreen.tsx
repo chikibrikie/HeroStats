@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableOpacity } from "react-native";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -46,17 +47,17 @@ const SingInScreen = () => {
           onChangeText={(text) => setConfirmPassword(text)}
         />
       </View>
-      <View style={styles.checkbox}>
-        <Checkbox
-          status={checked ? "checked" : "unchecked"}
-          onPress={() => {
-            setChecked(!checked);
-          }}
-        />
+      <TouchableOpacity
+        style={styles.checkbox}
+        onPress={() => {
+          setChecked(!checked);
+        }}
+      >
+        <Checkbox status={checked ? "checked" : "unchecked"} />
         <Text style={styles.checkboxText}>
           Yes, I want emails with recommendations, special offers and more.
         </Text>
-      </View>
+      </TouchableOpacity>
       <Button mode="contained">Join now</Button>
       <Text>
         By joining HeroStats, you accept our Membership agreement, Privacy

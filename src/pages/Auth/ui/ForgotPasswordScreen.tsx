@@ -14,17 +14,21 @@ const SingInScreen = () => {
   const [textForgotEmail, setTextForgotEmail] = React.useState("");
   return (
     <SafeAreaView style={styles.container}>
-      <Text variant="displayLarge">HeroStats</Text>
+      <Text style={styles.title} variant="displayLarge">
+        HeroStats
+      </Text>
       <View>
-        <Text>Forgot your password?</Text>
+        <Text variant="headlineLarge">Forgot your password?</Text>
         <Text>Don’t worry, it happens to the best of us.</Text>
       </View>
-      <TextInput
-        label="Email or username"
-        value={textForgotEmail}
-        onChangeText={(text) => setTextForgotEmail(text)}
-      />
-      <Button mode="contained">Send reset link</Button>
+      <View style={styles.input}>
+        <TextInput
+          label="Email or username"
+          value={textForgotEmail}
+          onChangeText={(text) => setTextForgotEmail(text)}
+        />
+        <Button mode="contained">Send reset link</Button>
+      </View>
       <Button onPress={() => navigate(SCREENS.SignIn)}>Back to sign in</Button>
     </SafeAreaView>
   );
@@ -32,9 +36,15 @@ const SingInScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 15,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
+  },
+  title: {
+    textAlign: "center",
+  },
+  input: {
+    gap: 15,
   },
 });
 export default SingInScreen;
