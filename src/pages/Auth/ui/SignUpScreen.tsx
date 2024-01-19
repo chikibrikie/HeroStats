@@ -13,7 +13,7 @@ const SingInScreen = () => {
   const [checked, setChecked] = React.useState(false);
   return (
     <View style={styles.container}>
-      <Text>HeroStats</Text>
+      <Text variant="headlineLarge">HeroStats</Text>
       <Text>Join</Text>
       <Text>Already a member?</Text>
       <Button onPress={() => navigate(SCREENS.SignIn)}>Sign in</Button>

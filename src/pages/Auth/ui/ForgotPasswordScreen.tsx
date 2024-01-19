@@ -1,16 +1,16 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { TextInput } from "react-native-paper";
+import { TextInput, Text } from "react-native-paper";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
-import { Button, Text } from "shared/ui";
+import { Button } from "shared/ui";
 
 const SingInScreen = () => {
   const [textForgotEmail, setTextForgotEmail] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>HeroStats</Text>
+      <Text variant="headlineLarge">HeroStats</Text>
       <Text>Forgot your password?</Text>
       <Text>Don’t worry, it happens to the best of us.</Text>
       <TextInput

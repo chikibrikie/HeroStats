@@ -6,12 +6,12 @@ import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
 import { Button, Text } from "shared/ui";
 
-const SingInScreen = () => {
+const SignInScreen = () => {
   const [textEmail, setTextEmail] = React.useState("");
   const [textPassword, setTextPassword] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text>HeroStats</Text>
+      <Text variant="headlineLarge">HeroStats</Text>
       <Text>Sign in</Text>
       <Text>Not a member?</Text>
       <Button onPress={() => navigate(SCREENS.SignUp)}>Join now</Button>
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-export default SingInScreen;
+export default SignInScreen;
