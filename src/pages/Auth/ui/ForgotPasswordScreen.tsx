@@ -1,18 +1,24 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { TextInput, Text } from "react-native-paper";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
-import { Button } from "shared/ui";
-
+import {
+  Button,
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  SafeAreaView,
+} from "shared/ui";
 const SingInScreen = () => {
   const [textForgotEmail, setTextForgotEmail] = React.useState("");
   return (
-    <View style={styles.container}>
-      <Text variant="headlineLarge">HeroStats</Text>
-      <Text>Forgot your password?</Text>
-      <Text>Don’t worry, it happens to the best of us.</Text>
+    <SafeAreaView style={styles.container}>
+      <Text variant="displayLarge">HeroStats</Text>
+      <View>
+        <Text>Forgot your password?</Text>
+        <Text>Don’t worry, it happens to the best of us.</Text>
+      </View>
       <TextInput
         label="Email or username"
         value={textForgotEmail}
@@ -20,7 +26,7 @@ const SingInScreen = () => {
       />
       <Button mode="contained">Send reset link</Button>
       <Button onPress={() => navigate(SCREENS.SignIn)}>Back to sign in</Button>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

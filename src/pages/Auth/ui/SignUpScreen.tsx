@@ -1,10 +1,16 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { TextInput, Checkbox } from "react-native-paper";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
-import { Button, Text } from "shared/ui";
+import {
+  Button,
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  Checkbox,
+  SafeAreaView,
+} from "shared/ui";
 
 const SingInScreen = () => {
   const [textEmail, setTextEmail] = React.useState("");
@@ -12,11 +18,13 @@ const SingInScreen = () => {
   const [textConfirmPassword, setConfirmPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
   return (
-    <View style={styles.container}>
-      <Text variant="headlineLarge">HeroStats</Text>
-      <Text>Join</Text>
-      <Text>Already a member?</Text>
-      <Button onPress={() => navigate(SCREENS.SignIn)}>Sign in</Button>
+    <SafeAreaView style={styles.container}>
+      <Text variant="displayLarge">HeroStats</Text>
+      <View>
+        <Text>Join</Text>
+        <Text>Already a member?</Text>
+        <Button onPress={() => navigate(SCREENS.SignIn)}>Sign in</Button>
+      </View>
       <TextInput
         label="Email"
         value={textEmail}
@@ -46,7 +54,7 @@ const SingInScreen = () => {
         By joining HeroStats, you accept our Membership agreement, Privacy
         Policy and Terms of Use.
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
