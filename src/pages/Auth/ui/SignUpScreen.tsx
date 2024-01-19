@@ -20,10 +20,10 @@ const SingInScreen = () => {
   const [checked, setChecked] = React.useState(false);
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.title} variant="displayLarge">
+        HeroStats
+      </Text>
       <View>
-        <Text style={styles.title} variant="displayLarge">
-          HeroStats
-        </Text>
         <Text variant="headlineLarge">Join</Text>
         <View style={styles.row}>
           <Text>Already a member?</Text>
