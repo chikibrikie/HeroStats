@@ -1,5 +1,4 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -12,6 +11,7 @@ import {
   Checkbox,
   SafeAreaView,
   useTheme,
+  TouchableOpacity,
 } from "shared/ui";
 
 const SingInScreen = () => {
@@ -62,11 +62,13 @@ const SingInScreen = () => {
           Yes, I want emails with recommendations, special offers and more.
         </Text>
       </TouchableOpacity>
-      <Button mode="contained">Join now</Button>
-      <Text>
-        By joining HeroStats, you accept our Membership agreement, Privacy
-        Policy and Terms of Use.
-      </Text>
+      <View>
+        <Button mode="contained">Join now</Button>
+        <Text style={styles.footerText}>
+          By joining HeroStats, you accept our Membership agreement, Privacy
+          Policy and Terms of Use.
+        </Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -91,6 +93,9 @@ const styles = StyleSheet.create({
   },
   checkboxText: {
     flex: 1,
+  },
+  footerText: {
+    textAlign: "center",
   },
 });
 export default SingInScreen;

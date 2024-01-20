@@ -42,10 +42,12 @@ const SignInScreen = () => {
           onChangeText={(text) => setTextPassword(text)}
         />
       </View>
-      <Button mode="contained">Sign In</Button>
-      <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
-        Forgot your password?
-      </Button>
+      <View>
+        <Button mode="contained">Sign In</Button>
+        <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
+          Forgot your password?
+        </Button>
+      </View>
     </SafeAreaView>
   );
 };
