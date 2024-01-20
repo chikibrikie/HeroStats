@@ -9,13 +9,17 @@ import {
   SafeAreaView,
   View,
   StyleSheet,
+  useTheme,
 } from "shared/ui";
 
 const SignInScreen = () => {
   const [textEmail, setTextEmail] = React.useState("");
   const [textPassword, setTextPassword] = React.useState("");
+  const theme = useTheme();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <Text variant="displayLarge" style={styles.title}>
         HeroStats
       </Text>
@@ -49,7 +53,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff",
     justifyContent: "space-between",
   },
   title: {

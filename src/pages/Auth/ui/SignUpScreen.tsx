@@ -11,6 +11,7 @@ import {
   StyleSheet,
   Checkbox,
   SafeAreaView,
+  useTheme,
 } from "shared/ui";
 
 const SingInScreen = () => {
@@ -18,8 +19,11 @@ const SingInScreen = () => {
   const [textPassword, setTextPassword] = React.useState("");
   const [textConfirmPassword, setConfirmPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
+  const theme = useTheme();
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <Text style={styles.title} variant="displayLarge">
         HeroStats
       </Text>
@@ -70,7 +74,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff",
     justifyContent: "space-between",
   },
   title: {

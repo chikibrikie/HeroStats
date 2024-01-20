@@ -9,11 +9,15 @@ import {
   View,
   StyleSheet,
   SafeAreaView,
+  useTheme,
 } from "shared/ui";
 const SingInScreen = () => {
+  const theme = useTheme();
   const [textForgotEmail, setTextForgotEmail] = React.useState("");
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
       <Text style={styles.title} variant="displayLarge">
         HeroStats
       </Text>
@@ -37,7 +41,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    backgroundColor: "#fff",
     justifyContent: "space-between",
   },
   title: {
