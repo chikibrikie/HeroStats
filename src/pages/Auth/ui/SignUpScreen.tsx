@@ -62,13 +62,11 @@ const SingInScreen = () => {
           Yes, I want emails with recommendations, special offers and more.
         </Text>
       </TouchableOpacity>
-      <View>
-        <Button mode="contained">Join now</Button>
-        <Text style={styles.footerText}>
-          By joining HeroStats, you accept our Membership agreement, Privacy
-          Policy and Terms of Use.
-        </Text>
-      </View>
+      <Button mode="contained">Join now</Button>
+      <Text style={styles.footerText}>
+        By joining HeroStats, you accept our Membership agreement, Privacy
+        Policy and Terms of Use.
+      </Text>
     </SafeAreaView>
   );
 };
