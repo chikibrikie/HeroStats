@@ -28,7 +28,7 @@ const Wrapper = () => {
   const { theme } = useMaterial3Theme();
 
   const paperTheme =
-    currentTheme === "dark"
+    currentTheme === "light"
       ? { ...MD3DarkTheme, colors: theme.dark }
       : { ...MD3LightTheme, colors: theme.light };
   return (
@@ -36,11 +36,11 @@ const Wrapper = () => {
       <PaperProvider theme={paperTheme}>
         <NavigationContainer
           ref={navigationRef}
-          theme={currentTheme === "light" ? LightTheme : DarkTheme}
+          theme={currentTheme === "dark" ? LightTheme : DarkTheme}
         >
           <MainStack />
+          <StatusBar style={currentTheme} />
         </NavigationContainer>
-        <StatusBar style="auto" />
       </PaperProvider>
     </SafeAreaProvider>
   );
