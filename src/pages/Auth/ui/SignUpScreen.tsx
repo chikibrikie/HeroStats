@@ -1,29 +1,99 @@
-import { View, StyleSheet } from "react-native";
+import React from "react";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
-import { Button, Text } from "shared/ui";
+import {
+  Button,
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  Checkbox,
+  SafeAreaView,
+  useTheme,
+  TouchableOpacity,
+} from "shared/ui";
 
 const SingInScreen = () => {
+  const [textEmail, setTextEmail] = React.useState("");
+  const [textPassword, setTextPassword] = React.useState("");
+  const [textConfirmPassword, setConfirmPassword] = React.useState("");
+  const [checked, setChecked] = React.useState(false);
+  const theme = useTheme();
   return (
-    <View style={styles.container}>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => navigate(SCREENS.SignUp)}
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
+      <Text style={styles.title} variant="displayLarge">
+        HeroStats
+      </Text>
+      <View>
+        <Text variant="headlineLarge">Join</Text>
+        <View style={styles.row}>
+          <Text>Already a member?</Text>
+          <Button onPress={() => navigate(SCREENS.SignIn)}>Sign in</Button>
+        </View>
+      </View>
+      <View style={styles.input}>
+        <TextInput
+          label="Email"
+          value={textEmail}
+          onChangeText={(text) => setTextEmail(text)}
+        />
+        <TextInput
+          label="Password"
+          value={textPassword}
+          onChangeText={(text) => setTextPassword(text)}
+        />
+        <TextInput
+          label="Confirm password"
+          value={textConfirmPassword}
+          onChangeText={(text) => setConfirmPassword(text)}
+        />
+      </View>
+      <TouchableOpacity
+        style={styles.checkbox}
+        onPress={() => {
+          setChecked(!checked);
+        }}
       >
-        Press me
-      </Button>
-      <Text>SignIn</Text>
-    </View>
+        <Checkbox status={checked ? "checked" : "unchecked"} />
+        <Text style={styles.checkboxText}>
+          Yes, I want emails with recommendations, special offers and more.
+        </Text>
+      </TouchableOpacity>
+      <Button mode="contained">Join now</Button>
+      <Text style={styles.footerText}>
+        By joining HeroStats, you accept our Membership agreement, Privacy
+        Policy and Terms of Use.
+      </Text>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    padding: 15,
+    justifyContent: "space-between",
+  },
+  title: {
+    textAlign: "center",
+  },
+  row: {
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+  },
+  input: {
+    gap: 15,
+  },
+  checkbox: {
+    flexDirection: "row",
+  },
+  checkboxText: {
+    flex: 1,
+  },
+  footerText: {
+    textAlign: "center",
   },
 });
 export default SingInScreen;

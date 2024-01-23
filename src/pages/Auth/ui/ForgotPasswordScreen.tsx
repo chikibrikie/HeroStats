@@ -1,29 +1,53 @@
-import { View, StyleSheet } from "react-native";
+import React from "react";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
-import { Button, Text } from "shared/ui";
-
+import {
+  Button,
+  Text,
+  TextInput,
+  View,
+  StyleSheet,
+  SafeAreaView,
+  useTheme,
+} from "shared/ui";
 const SingInScreen = () => {
+  const theme = useTheme();
+  const [textForgotEmail, setTextForgotEmail] = React.useState("");
   return (
-    <View style={styles.container}>
-      <Button
-        icon="camera"
-        mode="contained"
-        onPress={() => navigate(SCREENS.SignUp)}
-      >
-        Press me
-      </Button>
-      <Text>ForgotPassword</Text>
-    </View>
+    <SafeAreaView
+      style={[styles.container, { backgroundColor: theme.colors.background }]}
+    >
+      <Text style={styles.title} variant="displayLarge">
+        HeroStats
+      </Text>
+      <View>
+        <Text variant="headlineLarge">Forgot your password?</Text>
+        <Text>Don’t worry, it happens to the best of us.</Text>
+      </View>
+      <View style={styles.input}>
+        <TextInput
+          label="Email or username"
+          value={textForgotEmail}
+          onChangeText={(text) => setTextForgotEmail(text)}
+        />
+        <Button mode="contained">Send reset link</Button>
+      </View>
+      <Button onPress={() => navigate(SCREENS.SignIn)}>Back to sign in</Button>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    padding: 15,
+    justifyContent: "space-between",
+  },
+  title: {
+    textAlign: "center",
+  },
+  input: {
+    gap: 15,
   },
 });
 export default SingInScreen;
