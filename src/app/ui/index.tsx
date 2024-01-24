@@ -1,26 +1,55 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { MD3DarkTheme, MD3LightTheme, PaperProvider } from "react-native-paper";
+import {
+  MD3DarkTheme,
+  MD3LightTheme,
+  PaperProvider,
+  adaptNavigationTheme,
+} from "react-native-paper";
+import { Provider, useSelector } from "react-redux";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useColorScheme } from "react-native";
 import { useMaterial3Theme } from "@pchmn/expo-material3-theme";
+import {
+  DefaultTheme,
+  NavigationContainer,
+  DarkTheme as DefaultDarckTheme,
+} from "@react-navigation/native";
 
 import MainStack from "pages/MainStack/MainStack";
-
-export default function App() {
-  const colorScheme = useColorScheme();
+import { store } from "app/model";
+import { selectCurentTheme } from "entities/Settings/model";
+import { navigationRef } from "shared/lib/navigationRef";
+const { LightTheme, DarkTheme } = adaptNavigationTheme({
+  reactNavigationLight: DefaultTheme,
+  reactNavigationDark: DefaultDarckTheme,
+});
+const Wrapper = () => {
+  const currentTheme = useSelector(selectCurentTheme);
   const { theme } = useMaterial3Theme();
 
   const paperTheme =
-    colorScheme === "dark"
+    currentTheme === "dark"
       ? { ...MD3DarkTheme, colors: theme.dark }
       : { ...MD3LightTheme, colors: theme.light };
   return (
     <SafeAreaProvider>
       <PaperProvider theme={paperTheme}>
-        <MainStack />
-        <StatusBar style="auto" />
+        <NavigationContainer
+          ref={navigationRef}
+          theme={currentTheme === "light" ? LightTheme : DarkTheme}
+        >
+          <MainStack />
+        </NavigationContainer>
+        <StatusBar style={currentTheme === "dark" ? "light" : "dark"} />
       </PaperProvider>
     </SafeAreaProvider>
+  );
+};
+
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Wrapper></Wrapper>
+    </Provider>
   );
 }
