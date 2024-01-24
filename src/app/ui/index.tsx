@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
+import "../lib/i18n";
 import {
   MD3DarkTheme,
   MD3LightTheme,

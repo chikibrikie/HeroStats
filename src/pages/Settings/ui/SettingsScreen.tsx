@@ -1,7 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 
-import { changeTheme, selectCurentTheme } from "entities/Settings/model";
+import {
+  ILanguage,
+  changeTheme,
+  selectCurentTheme,
+  selectCurrentLanguage,
+  setCurrentLanguage,
+} from "entities/Settings/model";
 import {
   StyleSheet,
   SafeAreaView,
@@ -9,6 +16,7 @@ import {
   Text,
   Switch,
   View,
+  RadioButton,
 } from "shared/ui";
 
 const SettingsScreen = () => {
@@ -18,8 +26,17 @@ const SettingsScreen = () => {
 
   const currentTheme = useSelector(selectCurentTheme);
 
+  const currentLanguage = useSelector(selectCurrentLanguage);
+
+  const { t, i18n } = useTranslation();
+
   const onToggleSwitch = () => {
     dispatch(changeTheme(currentTheme === "dark" ? "light" : "dark"));
+  };
+
+  const onLanguageChange = (kekw: string) => {
+    i18n.changeLanguage(kekw);
+    dispatch(setCurrentLanguage(kekw as ILanguage));
   };
 
   return (
@@ -33,6 +50,19 @@ const SettingsScreen = () => {
         />
         <Text>{currentTheme}</Text>
       </View>
+      <RadioButton.Group
+        onValueChange={onLanguageChange}
+        value={currentLanguage}
+      >
+        <View>
+          <Text>{t("English")}</Text>
+          <RadioButton value="en" />
+        </View>
+        <View>
+          <Text>{t("Russian")}</Text>
+          <RadioButton value="ru" />
+        </View>
+      </RadioButton.Group>
     </SafeAreaView>
   );
 };
@@ -40,7 +70,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 15,
-    justifyContent: "space-between",
+    justifyContent: "center",
+    alignItems: "center",
   },
   switch: {
     flexDirection: "row",
