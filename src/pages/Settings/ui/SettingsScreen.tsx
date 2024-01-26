@@ -44,11 +44,11 @@ const SettingsScreen = () => {
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
       <View style={styles.switch}>
+        <Text>{t("Change theme")}</Text>
         <Switch
           value={currentTheme === "dark"}
           onValueChange={onToggleSwitch}
         />
-        <Text>{currentTheme}</Text>
       </View>
       <RadioButton.Group
         onValueChange={onLanguageChange}

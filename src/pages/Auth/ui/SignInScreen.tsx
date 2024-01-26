@@ -26,28 +26,32 @@ const SignInScreen = () => {
         HeroStats
       </Text>
       <View>
-        <Text variant="headlineLarge">Sign in</Text>
+        <Text variant="headlineLarge">{t("Sign in")}</Text>
         <View style={styles.row}>
           <Text>{t("Not a member?")}</Text>
-          <Button onPress={() => navigate(SCREENS.SignUp)}>Join now</Button>
+          <Button onPress={() => navigate(SCREENS.SignUp)}>
+            {t("Join now")}
+          </Button>
         </View>
       </View>
       <View style={styles.input}>
         <TextInput
-          label="Email"
+          label={t("Email")}
           value={textEmail}
           onChangeText={(text) => setTextEmail(text)}
         />
         <TextInput
-          label="Password"
+          label={t("Password")}
           value={textPassword}
           onChangeText={(text) => setTextPassword(text)}
         />
       </View>
       <View>
-        <Button mode="contained">Sign In</Button>
+        <Button mode="contained" onPress={() => navigate(SCREENS.HomeBoard)}>
+          {t("Sign In")}
+        </Button>
         <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
-          Forgot your password?
+          {t("Forgot your password?")}
         </Button>
       </View>
     </SafeAreaView>

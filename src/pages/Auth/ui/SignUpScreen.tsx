@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -20,6 +21,7 @@ const SingInScreen = () => {
   const [textConfirmPassword, setConfirmPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -28,25 +30,27 @@ const SingInScreen = () => {
         HeroStats
       </Text>
       <View>
-        <Text variant="headlineLarge">Join</Text>
+        <Text variant="headlineLarge">{t("Join")}</Text>
         <View style={styles.row}>
-          <Text>Already a member?</Text>
-          <Button onPress={() => navigate(SCREENS.SignIn)}>Sign in</Button>
+          <Text>{t("Already a member?")}</Text>
+          <Button onPress={() => navigate(SCREENS.SignIn)}>
+            {t("Sign in")}
+          </Button>
         </View>
       </View>
       <View style={styles.input}>
         <TextInput
-          label="Email"
+          label={t("Email")}
           value={textEmail}
           onChangeText={(text) => setTextEmail(text)}
         />
         <TextInput
-          label="Password"
+          label={t("Password")}
           value={textPassword}
           onChangeText={(text) => setTextPassword(text)}
         />
         <TextInput
-          label="Confirm password"
+          label={t("Confirm password")}
           value={textConfirmPassword}
           onChangeText={(text) => setConfirmPassword(text)}
         />
@@ -59,13 +63,16 @@ const SingInScreen = () => {
       >
         <Checkbox status={checked ? "checked" : "unchecked"} />
         <Text style={styles.checkboxText}>
-          Yes, I want emails with recommendations, special offers and more.
+          {t(
+            "Yes, I want emails with recommendations, special offers and more.",
+          )}
         </Text>
       </TouchableOpacity>
-      <Button mode="contained">Join now</Button>
+      <Button mode="contained">{t("Join Now")}</Button>
       <Text style={styles.footerText}>
-        By joining HeroStats, you accept our Membership agreement, Privacy
-        Policy and Terms of Use.
+        {t(
+          "By joining HeroStats, you accept our Membership agreement, Privacy Policy and Terms of Use.",
+        )}
       </Text>
     </SafeAreaView>
   );

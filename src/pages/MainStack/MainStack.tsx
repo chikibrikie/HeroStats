@@ -9,6 +9,7 @@ import SCREENS from "shared/lib/screen";
 import SettingsScreen from "pages/Settings/ui/SettingsScreen";
 import { navigate } from "shared/lib/navigationRef";
 import { RootStackParamList } from "shared/lib/types";
+import HomeBoard from "pages/Screens/ui/HomeBoard";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const MainStack = () => {
@@ -34,6 +35,7 @@ const MainStack = () => {
         component={ForgotPasswordScreen}
       />
       <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
+      <Stack.Screen name={SCREENS.HomeBoard} component={HomeBoard} />
     </Stack.Navigator>
   );
 };
