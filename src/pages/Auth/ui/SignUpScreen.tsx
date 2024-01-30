@@ -28,6 +28,9 @@ const getSchema = (t: TFunction) => {
     password: z
       .string({ required_error: t("This field is requaired!") })
       .min(8, { message: t("Must be n or fewer characters long", { n: 8 }) }),
+    confirmPassword: z
+      .string({ required_error: t("This field is requaired!") })
+      .min(8, { message: t("Must be n or fewer characters long", { n: 8 }) }),
   });
 };
 
