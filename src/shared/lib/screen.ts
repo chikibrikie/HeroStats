@@ -4,5 +4,6 @@ enum SCREENS {
   ForgotPassword = "ForgotPassword",
   Settings = "Settings",
   HomeBoard = "HomeBoard",
+  Tab = "Tab",
 }
 export default SCREENS;
