@@ -1,6 +1,11 @@
 import SCREENS from "shared/lib/screen";
 
 export default {
+  "This field is requaired!": "Это обязательное поле!",
+  "Invalid email address": "Не правильный электронный адрес",
+  "Must be n or fewer characters long":
+    "Должен содержать {{n}} символов или больше",
+
   /* Вход */
 
   [SCREENS.SignIn]: "Вход",

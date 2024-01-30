@@ -1,5 +1,9 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
+import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { z } from "zod";
+import { TFunction } from "i18next";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -13,15 +17,39 @@ import {
   SafeAreaView,
   useTheme,
   TouchableOpacity,
+  HelperText,
 } from "shared/ui";
 
-const SingInScreen = () => {
-  const [textEmail, setTextEmail] = React.useState("");
-  const [textPassword, setTextPassword] = React.useState("");
-  const [textConfirmPassword, setConfirmPassword] = React.useState("");
+const getSchema = (t: TFunction) => {
+  return z.object({
+    email: z
+      .string({ required_error: t("This field is requaired!") })
+      .email({ message: t("Invalid email address") }),
+    password: z
+      .string({ required_error: t("This field is requaired!") })
+      .min(8, { message: t("Must be n or fewer characters long", { n: 8 }) }),
+    confirmPassword: z
+      .string({ required_error: t("This field is requaired!") })
+      .min(8, { message: t("Must be n or fewer characters long", { n: 8 }) }),
+  });
+};
+
+const SingUpScreen = () => {
   const [checked, setChecked] = React.useState(false);
   const theme = useTheme();
   const { t } = useTranslation();
+  const { control, handleSubmit } = useForm({
+    resolver: zodResolver(getSchema(t)),
+    defaultValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
+  const onSubmit = handleSubmit((data) => {
+    console.log(data);
+    navigate(SCREENS.Tab);
+  });
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -39,20 +67,57 @@ const SingInScreen = () => {
         </View>
       </View>
       <View style={styles.input}>
-        <TextInput
-          label={t("Email")}
-          value={textEmail}
-          onChangeText={(text) => setTextEmail(text)}
+        <Controller
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <View>
+              <TextInput
+                error={Boolean(error)}
+                label={t("Email")}
+                value={value}
+                onChangeText={onChange}
+              />
+              <HelperText type="error" visible={Boolean(error)}>
+                {error?.message}
+              </HelperText>
+            </View>
+          )}
+          name="email"
         />
-        <TextInput
-          label={t("Password")}
-          value={textPassword}
-          onChangeText={(text) => setTextPassword(text)}
+
+        <Controller
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <View>
+              <TextInput
+                error={Boolean(error)}
+                label={t("Password")}
+                value={value}
+                onChangeText={onChange}
+              />
+              <HelperText type="error" visible={Boolean(error)}>
+                {error?.message}
+              </HelperText>
+            </View>
+          )}
+          name="password"
         />
-        <TextInput
-          label={t("Confirm password")}
-          value={textConfirmPassword}
-          onChangeText={(text) => setConfirmPassword(text)}
+        <Controller
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => (
+            <View>
+              <TextInput
+                error={Boolean(error)}
+                label={t("Confirm password")}
+                value={value}
+                onChangeText={onChange}
+              />
+              <HelperText type="error" visible={Boolean(error)}>
+                {error?.message}
+              </HelperText>
+            </View>
+          )}
+          name="confirmPassword"
         />
       </View>
       <TouchableOpacity
@@ -68,7 +133,9 @@ const SingInScreen = () => {
           )}
         </Text>
       </TouchableOpacity>
-      <Button mode="contained">{t("Join Now")}</Button>
+      <Button mode="contained" onPress={onSubmit}>
+        {t("Join Now")}
+      </Button>
       <Text style={styles.footerText}>
         {t(
           "By joining HeroStats, you accept our Membership agreement, Privacy Policy and Terms of Use.",
@@ -103,4 +170,4 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-export default SingInScreen;
+export default SingUpScreen;
