@@ -1,6 +1,5 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import "../lib/i18n";
 import {
   MD3DarkTheme,
   MD3LightTheme,
@@ -15,9 +14,10 @@ import {
   NavigationContainer,
   DarkTheme as DefaultDarckTheme,
 } from "@react-navigation/native";
+import { PersistGate } from "redux-persist/integration/react";
 
 import MainStack from "pages/MainStack/MainStack";
-import { store } from "app/model";
+import { persistor, store } from "app/model";
 import { selectCurentTheme } from "entities/Settings/model";
 import { navigationRef } from "shared/lib/navigationRef";
 const { LightTheme, DarkTheme } = adaptNavigationTheme({
@@ -50,7 +50,15 @@ const Wrapper = () => {
 export default function App() {
   return (
     <Provider store={store}>
-      <Wrapper></Wrapper>
+      <PersistGate
+        loading={null}
+        persistor={persistor}
+        onBeforeLift={() => {
+          require("../lib/i18n");
+        }}
+      >
+        <Wrapper />
+      </PersistGate>
     </Provider>
   );
 }

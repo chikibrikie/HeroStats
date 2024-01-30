@@ -32,7 +32,6 @@ const RNLanguageDetector: LanguageDetectorModule = {
   },
   detect: () => {
     const currentLanguage = selectCurrentLanguage(store.getState());
-    /* istanbul ignore next */
     const locale = currentLanguage
       ? currentLanguage
       : Platform.OS === "ios"
@@ -48,8 +47,8 @@ const RNLanguageDetector: LanguageDetectorModule = {
 };
 
 i18n
-  .use(RNLanguageDetector)
   .use(initReactI18next)
+  .use(RNLanguageDetector)
   .init({
     compatibilityJSON: "v3",
     fallbackLng: "ru",
