@@ -1,6 +1,11 @@
 import SCREENS from "shared/lib/screen";
 
 export default {
+  "This field is requaired!": "This field is requaired!",
+  "Invalid email address": "Invalid email address",
+  "Must be n or fewer characters long":
+    "Must be {{n}} or fewer characters long",
+
   /*SignIn*/
 
   [SCREENS.SignIn]: "Sign In",
