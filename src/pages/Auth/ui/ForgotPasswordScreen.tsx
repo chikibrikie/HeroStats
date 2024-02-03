@@ -4,6 +4,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { TFunction } from "i18next";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -42,38 +43,40 @@ const SingInScreen = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      <Text style={styles.title} variant="displayLarge">
-        HeroStats
-      </Text>
-      <View>
-        <Text variant="headlineLarge">{t("Forgot your password?")}</Text>
-        <Text>{t("Don’t worry, it happens to the best of us.")}</Text>
-      </View>
-      <View style={styles.input}>
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Email or username")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="email"
-        />
-        <Button mode="contained" onPress={onSubmit}>
-          {t("Send reset link")}
+      <KeyboardAwareScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.title} variant="displayLarge">
+          HeroStats
+        </Text>
+        <View>
+          <Text variant="headlineLarge">{t("Forgot your password?")}</Text>
+          <Text>{t("Don’t worry, it happens to the best of us.")}</Text>
+        </View>
+        <View style={styles.input}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Email or username")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="email"
+          />
+          <Button mode="contained" onPress={onSubmit}>
+            {t("Send reset link")}
+          </Button>
+        </View>
+        <Button onPress={() => navigate(SCREENS.SignIn)}>
+          {t("Back to sign in")}
         </Button>
-      </View>
-      <Button onPress={() => navigate(SCREENS.SignIn)}>
-        {t("Back to sign in")}
-      </Button>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
@@ -88,6 +91,10 @@ const styles = StyleSheet.create({
   },
   input: {
     gap: 15,
+  },
+  scroll: {
+    justifyContent: "space-between",
+    flex: 1,
   },
 });
 export default SingInScreen;

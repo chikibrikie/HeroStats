@@ -17,6 +17,7 @@ import {
   useTheme,
   HelperText,
 } from "shared/ui";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 const getSchema = (t: TFunction) => {
   return z.object({
     email: z
@@ -46,62 +47,64 @@ const SignInScreen = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      <Text variant="displayLarge" style={styles.title}>
-        HeroStats
-      </Text>
-      <View>
-        <Text variant="headlineLarge">{t("Sign in")}</Text>
-        <View style={styles.row}>
-          <Text>{t("Not a member?")}</Text>
-          <Button onPress={() => navigate(SCREENS.SignUp)}>
-            {t("Join now")}
+      <KeyboardAwareScrollView contentContainerStyle={styles.scroll}>
+        <Text variant="displayLarge" style={styles.title}>
+          HeroStats
+        </Text>
+        <View>
+          <Text variant="headlineLarge">{t("Sign in")}</Text>
+          <View style={styles.row}>
+            <Text>{t("Not a member?")}</Text>
+            <Button onPress={() => navigate(SCREENS.SignUp)}>
+              {t("Join now")}
+            </Button>
+          </View>
+        </View>
+        <View style={styles.input}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Email")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="email"
+          />
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Password")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="password"
+          />
+        </View>
+        <View>
+          <Button mode="contained" onPress={onSubmit}>
+            {t("Sign In")}
+          </Button>
+          <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
+            {t("Forgot your password?")}
           </Button>
         </View>
-      </View>
-      <View style={styles.input}>
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Email")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="email"
-        />
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Password")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="password"
-        />
-      </View>
-      <View>
-        <Button mode="contained" onPress={onSubmit}>
-          {t("Sign In")}
-        </Button>
-        <Button onPress={() => navigate(SCREENS.ForgotPassword)}>
-          {t("Forgot your password?")}
-        </Button>
-      </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
@@ -120,6 +123,10 @@ const styles = StyleSheet.create({
   },
   input: {
     gap: 15,
+  },
+  scroll: {
+    justifyContent: "space-between",
+    flex: 1,
   },
 });
 export default SignInScreen;
