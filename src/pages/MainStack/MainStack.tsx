@@ -1,5 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { IconButton } from "react-native-paper";
+import { useSelector } from "react-redux";
 
 import TabScreen from "./TabStack";
 
@@ -9,9 +10,11 @@ import SignInScreen from "pages/Auth/ui/SignInScreen";
 import SCREENS from "shared/lib/screen";
 import SettingsScreen from "pages/Settings/ui/SettingsScreen";
 import { navigate } from "shared/lib/navigationRef";
+import { selectUser } from "entities/Authentication/model";
 
 const Stack = createNativeStackNavigator();
 const MainStack = () => {
+  const user = useSelector(selectUser);
   return (
     <Stack.Navigator
       screenOptions={{
@@ -23,18 +26,23 @@ const MainStack = () => {
         ),
       }}
     >
-      <Stack.Screen name={SCREENS.SignIn} component={SignInScreen} />
-      <Stack.Screen name={SCREENS.SignUp} component={SignUpScreen} />
-      <Stack.Screen
-        name={SCREENS.ForgotPassword}
-        component={ForgotPasswordScreen}
-      />
-      <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
-      <Stack.Screen
-        options={{ headerShown: false }}
-        name={SCREENS.Tab}
-        component={TabScreen}
-      />
+      {user === null ? (
+        <>
+          <Stack.Screen name={SCREENS.SignIn} component={SignInScreen} />
+          <Stack.Screen name={SCREENS.SignUp} component={SignUpScreen} />
+          <Stack.Screen
+            name={SCREENS.ForgotPassword}
+            component={ForgotPasswordScreen}
+          />
+          <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
+        </>
+      ) : (
+        <Stack.Screen
+          options={{ headerShown: false }}
+          name={SCREENS.Tab}
+          component={TabScreen}
+        />
+      )}
     </Stack.Navigator>
   );
 };

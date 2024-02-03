@@ -17,7 +17,10 @@ import {
   Switch,
   View,
   RadioButton,
+  Button,
 } from "shared/ui";
+import { updateUser } from "entities/Authentication/model";
+import { pop } from "shared/lib/navigationRef";
 
 const SettingsScreen = () => {
   const dispatch = useDispatch();
@@ -37,6 +40,10 @@ const SettingsScreen = () => {
   const onLanguageChange = (kekw: string) => {
     i18n.changeLanguage(kekw);
     dispatch(setCurrentLanguage(kekw as ILanguage));
+  };
+  const onPress = () => {
+    dispatch(updateUser(null));
+    pop();
   };
 
   return (
@@ -63,6 +70,9 @@ const SettingsScreen = () => {
           <RadioButton value="ru" />
         </View>
       </RadioButton.Group>
+      <Button mode="contained" onPress={onPress}>
+        {t("Exit the application")}
+      </Button>
     </SafeAreaView>
   );
 };
