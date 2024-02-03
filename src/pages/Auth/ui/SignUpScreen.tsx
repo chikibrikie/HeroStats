@@ -19,6 +19,7 @@ import {
   TouchableOpacity,
   HelperText,
 } from "shared/ui";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const getSchema = (t: TFunction) => {
   return z.object({
@@ -54,93 +55,95 @@ const SingUpScreen = () => {
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
     >
-      <Text style={styles.title} variant="displayLarge">
-        HeroStats
-      </Text>
-      <View>
-        <Text variant="headlineLarge">{t("Join")}</Text>
-        <View style={styles.row}>
-          <Text>{t("Already a member?")}</Text>
-          <Button onPress={() => navigate(SCREENS.SignIn)}>
-            {t("Sign in")}
-          </Button>
+      <KeyboardAwareScrollView contentContainerStyle={styles.scroll}>
+        <Text style={styles.title} variant="displayLarge">
+          HeroStats
+        </Text>
+        <View>
+          <Text variant="headlineLarge">{t("Join")}</Text>
+          <View style={styles.row}>
+            <Text>{t("Already a member?")}</Text>
+            <Button onPress={() => navigate(SCREENS.SignIn)}>
+              {t("Sign in")}
+            </Button>
+          </View>
         </View>
-      </View>
-      <View style={styles.input}>
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Email")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="email"
-        />
+        <View style={styles.input}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Email")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="email"
+          />
 
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Password")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="password"
-        />
-        <Controller
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => (
-            <View>
-              <TextInput
-                error={Boolean(error)}
-                label={t("Confirm password")}
-                value={value}
-                onChangeText={onChange}
-              />
-              <HelperText type="error" visible={Boolean(error)}>
-                {error?.message}
-              </HelperText>
-            </View>
-          )}
-          name="confirmPassword"
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.checkbox}
-        onPress={() => {
-          setChecked(!checked);
-        }}
-      >
-        <Checkbox status={checked ? "checked" : "unchecked"} />
-        <Text style={styles.checkboxText}>
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Password")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="password"
+          />
+          <Controller
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => (
+              <View>
+                <TextInput
+                  error={Boolean(error)}
+                  label={t("Confirm password")}
+                  value={value}
+                  onChangeText={onChange}
+                />
+                <HelperText type="error" visible={Boolean(error)}>
+                  {error?.message}
+                </HelperText>
+              </View>
+            )}
+            name="confirmPassword"
+          />
+        </View>
+        <TouchableOpacity
+          style={styles.checkbox}
+          onPress={() => {
+            setChecked(!checked);
+          }}
+        >
+          <Checkbox status={checked ? "checked" : "unchecked"} />
+          <Text style={styles.checkboxText}>
+            {t(
+              "Yes, I want emails with recommendations, special offers and more.",
+            )}
+          </Text>
+        </TouchableOpacity>
+        <Button mode="contained" onPress={onSubmit}>
+          {t("Join Now")}
+        </Button>
+        <Text style={styles.footerText}>
           {t(
-            "Yes, I want emails with recommendations, special offers and more.",
+            "By joining HeroStats, you accept our Membership agreement, Privacy Policy and Terms of Use.",
           )}
         </Text>
-      </TouchableOpacity>
-      <Button mode="contained" onPress={onSubmit}>
-        {t("Join Now")}
-      </Button>
-      <Text style={styles.footerText}>
-        {t(
-          "By joining HeroStats, you accept our Membership agreement, Privacy Policy and Terms of Use.",
-        )}
-      </Text>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 };
@@ -168,6 +171,10 @@ const styles = StyleSheet.create({
   },
   footerText: {
     textAlign: "center",
+  },
+  scroll: {
+    justifyContent: "space-between",
+    flex: 1,
   },
 });
 export default SingUpScreen;
