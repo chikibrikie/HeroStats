@@ -34,7 +34,6 @@ const MainStack = () => {
             name={SCREENS.ForgotPassword}
             component={ForgotPasswordScreen}
           />
-          <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
         </>
       ) : (
         <Stack.Screen
@@ -43,6 +42,7 @@ const MainStack = () => {
           component={TabScreen}
         />
       )}
+      <Stack.Screen name={SCREENS.Settings} component={SettingsScreen} />
     </Stack.Navigator>
   );
 };

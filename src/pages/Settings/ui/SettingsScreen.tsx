@@ -19,7 +19,7 @@ import {
   RadioButton,
   Button,
 } from "shared/ui";
-import { updateUser } from "entities/Authentication/model";
+import { selectUser, updateUser } from "entities/Authentication/model";
 import { pop } from "shared/lib/navigationRef";
 
 const SettingsScreen = () => {
@@ -46,6 +46,8 @@ const SettingsScreen = () => {
     pop();
   };
 
+  const user = useSelector(selectUser);
+
   return (
     <SafeAreaView
       style={[styles.container, { backgroundColor: theme.colors.background }]}
@@ -70,9 +72,11 @@ const SettingsScreen = () => {
           <RadioButton value="ru" />
         </View>
       </RadioButton.Group>
-      <Button mode="contained" onPress={onPress}>
-        {t("Exit the application")}
-      </Button>
+      {user === null ? null : (
+        <Button mode="contained" onPress={onPress}>
+          {t("Exit the application")}
+        </Button>
+      )}
     </SafeAreaView>
   );
 };

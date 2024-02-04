@@ -5,5 +5,6 @@ enum SCREENS {
   Settings = "Settings",
   HomeBoard = "HomeBoard",
   Tab = "Tab",
+  MyProfile = "MyProfile",
 }
 export default SCREENS;
