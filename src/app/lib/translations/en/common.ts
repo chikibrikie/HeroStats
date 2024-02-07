@@ -6,9 +6,17 @@ export default {
   "Must be n or fewer characters long":
     "Must be {{n}} or fewer characters long",
 
-  /*SignIn*/
+  /*Screens*/
 
   [SCREENS.SignIn]: "Sign In",
+  [SCREENS.SignUp]: "Sign Up",
+  [SCREENS.ForgotPassword]: "Forgot Password",
+  [SCREENS.Settings]: "Settings",
+  [SCREENS.HomeBoard]: "HomeBoard",
+  [SCREENS.Tab]: "tab",
+
+  /*SignIn*/
+
   "Sign in": "Sign in",
   "Not a member?": "Not a member?",
   "Join now": "Join now",
@@ -19,7 +27,6 @@ export default {
 
   /*SignUp*/
 
-  [SCREENS.SignUp]: "Sign Up",
   Join: "Join",
   "Already a member?": "Already a member?",
   "Confirm password": "Confirm password",
@@ -31,7 +38,6 @@ export default {
 
   /*ForgotPassword*/
 
-  [SCREENS.ForgotPassword]: "Forgot Password",
   "Don’t worry, it happens to the best of us.":
     "Don’t worry, it happens to the best of us.",
   "Email or username": "Email or username",
@@ -40,12 +46,11 @@ export default {
 
   /*SettingsScreen*/
 
-  [SCREENS.Settings]: "Settings",
   "Change theme": "Change theme",
   Russian: "Russia",
   English: "English",
+
   /*HomeBoard*/
 
-  [SCREENS.HomeBoard]: "HomeBoard",
   Search: "Search",
 } as const;

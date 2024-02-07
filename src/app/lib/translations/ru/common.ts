@@ -6,9 +6,17 @@ export default {
   "Must be n or fewer characters long":
     "Должен содержать {{n}} символов или больше",
 
-  /* Вход */
+  /* Экраны */
 
   [SCREENS.SignIn]: "Вход",
+  [SCREENS.SignUp]: "Регистрация",
+  [SCREENS.ForgotPassword]: "Забыли пароль",
+  [SCREENS.Settings]: "Настройки",
+  [SCREENS.HomeBoard]: "Главная доска",
+  [SCREENS.Tab]: "ТАБ",
+
+  /* Вход */
+
   "Sign in": "Войти",
   "Not a member?": "Не зарегестрированы?",
   "Join now": "Присоединяйся сейчас",
@@ -19,7 +27,6 @@ export default {
 
   /* Регистрация */
 
-  [SCREENS.SignUp]: "Регистрация",
   Join: "Присоединиться",
   "Already a member?": "Уже зарегестрированы?",
   "Confirm password": "Повторите пароль",
@@ -31,7 +38,6 @@ export default {
 
   /* Забыли пароль */
 
-  [SCREENS.ForgotPassword]: "Забыли пароль",
   "Don’t worry, it happens to the best of us.":
     "Не волнуйтесь, такое случается с лучшими из нас.",
   "Send reset link": "Отправить ссылку для сброса",
@@ -40,14 +46,11 @@ export default {
 
   /* Настройки */
 
-  [SCREENS.Settings]: "Настройки",
   "Change theme": "Сменить тему",
   Russian: "Русский",
   English: "Английский",
 
   /* Главная доска */
-
-  [SCREENS.HomeBoard]: "Главная доска",
 
   Search: "Поиск",
 } as const;
