@@ -17,7 +17,10 @@ import {
   Switch,
   View,
   RadioButton,
+  Button,
 } from "shared/ui";
+import { selectUser, updateUser } from "entities/Authentication/model";
+import { pop } from "shared/lib/navigationRef";
 
 const SettingsScreen = () => {
   const dispatch = useDispatch();
@@ -38,6 +41,12 @@ const SettingsScreen = () => {
     i18n.changeLanguage(kekw);
     dispatch(setCurrentLanguage(kekw as ILanguage));
   };
+  const onPress = () => {
+    dispatch(updateUser(null));
+    pop();
+  };
+
+  const user = useSelector(selectUser);
 
   return (
     <SafeAreaView
@@ -63,6 +72,11 @@ const SettingsScreen = () => {
           <RadioButton value="ru" />
         </View>
       </RadioButton.Group>
+      {user === null ? null : (
+        <Button mode="contained" onPress={onPress}>
+          {t("Exit the application")}
+        </Button>
+      )}
     </SafeAreaView>
   );
 };

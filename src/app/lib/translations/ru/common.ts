@@ -44,6 +44,7 @@ export default {
   "Change theme": "Сменить тему",
   Russian: "Русский",
   English: "Английский",
+  "Exit the application": "Выход из приложения",
 
   /* Главная доска */
 

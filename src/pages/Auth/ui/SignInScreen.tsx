@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { TFunction } from "i18next";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useDispatch } from "react-redux";
 
 import { navigate } from "shared/lib/navigationRef";
 import SCREENS from "shared/lib/screen";
@@ -17,7 +19,7 @@ import {
   useTheme,
   HelperText,
 } from "shared/ui";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { updateUser } from "entities/Authentication/model";
 const getSchema = (t: TFunction) => {
   return z.object({
     email: z
@@ -29,6 +31,7 @@ const getSchema = (t: TFunction) => {
   });
 };
 const SignInScreen = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const { t } = useTranslation();
   const { control, handleSubmit } = useForm({
@@ -39,8 +42,7 @@ const SignInScreen = () => {
     },
   });
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    navigate(SCREENS.Tab);
+    dispatch(updateUser({ email: data.email }));
   });
 
   return (

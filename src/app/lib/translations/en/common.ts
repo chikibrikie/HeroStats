@@ -44,6 +44,8 @@ export default {
   "Change theme": "Change theme",
   Russian: "Russia",
   English: "English",
+  "Exit the application": "Exit the application",
+
   /*HomeBoard*/
 
   [SCREENS.HomeBoard]: "HomeBoard",
